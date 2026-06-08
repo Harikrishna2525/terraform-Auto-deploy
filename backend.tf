@@ -2,7 +2,7 @@ terraform {
   backend "s3" {
     bucket         = "hari-tf-state-25"
     key            = "terraform-vpc-network/terraform.tfstate"
-    dynamodb_table = "hari-tf-locked"
+    use_lockfile = true # <-- New native mechanism
     region         = "us-east-1"
     encrypt        = "true"
   }
