@@ -110,9 +110,14 @@ resource "aws_instance" "web" {
   ami                  = data.aws_ami.ubuntu.id
   instance_type        = "t2.micro"
   subnet_id            = aws_subnet.public.id
+
+  # Attaching the new Security Group
+  vpc_security_group_ids = [aws_security_group.web_sg.id]
   
   # Attaching your existing IAM Instance Profile
   iam_instance_profile = "Ec2_SSM_ACCESS"
+
+  
 
   # Custom 10 GB Root Volume
   root_block_device {
