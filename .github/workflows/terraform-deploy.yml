@@ -1,10 +1,9 @@
 name : terraform deploy to AWS using GitHub Actions
 
-on 
+on:
   push:
     branches:
       - main
-      - develop
 
 jobs:
   terraform:
@@ -32,6 +31,11 @@ jobs:
       - name: Terraform Plan
         run: terraform plan
 
+      - name: Terraform Validate
+        run: terraform validate
+
       - name: Terraform Apply
-        if: github.ref == 'refs/heads/main'
         run: terraform apply -auto-approve
+
+      - name: Terraform Output
+        run: terraform output
