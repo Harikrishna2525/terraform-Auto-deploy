@@ -46,6 +46,49 @@ resource "aws_route_table_association" "public_assoc" {
   route_table_id = aws_route_table.public_rt.id
 }
 
+# 2. Security Group Resource
+resource "aws_security_group" "web_sg" {
+  name        = "web-traffic-sg"
+  description = "Allow SSH, HTTP, and HTTPS traffic"
+  vpc_id      = aws_vpc.main.id
+
+  # SSH Access
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"] # For production, restrict this to your IP
+  }
+
+  # HTTP Access
+  ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  # HTTPS Access
+  ingress {
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  # Outbound Rules (Allow all internet access from the EC2 instance)
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name = "web-security-group"
+  }
+}
+
 # 2. Data Source for Latest Ubuntu 24.04 LTS AMI
 data "aws_ami" "ubuntu" {
   most_recent = true
