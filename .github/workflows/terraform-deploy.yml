@@ -35,7 +35,7 @@ jobs:
       - name: Terraform Validate
         run: terraform validate
       
-      - name : Terraform destroy
+      - name : Terraform Destroy
         run: terraform destroy -auto-approve
 
       - name: Terraform Output
