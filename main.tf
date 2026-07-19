@@ -119,7 +119,7 @@ resource "aws_instance" "web" {
   vpc_security_group_ids = [aws_security_group.ec2_sg.id]
 
     # Exact syntax to call the instance profile:
-  iam_instance_profile = Ec2_SSM_ACCESS   # Added IAM role that alreay exsiting in Actual Infra 
+  iam_instance_profile = "Ec2_SSM_ACCESS"   # Added IAM role that alreay exsiting in Actual Infra 
 
   root_block_device {
     volume_size           = 10
