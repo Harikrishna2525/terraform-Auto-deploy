@@ -1,25 +1,25 @@
 variable "aws_region"{
     type = string 
-    descripton = "we used this Region for this Project"
+    description = "we used this Region for this Project"
 
 }
 
 variable "vpc_cidr"{
       type = string 
-    descripton = "we used this CIDR block in this VPC "
+    description = "we used this CIDR block in this VPC "
 }
 
 variable "subnet_cidr"{
       type = string 
-    descripton = "we used this CIDR in subnet"
+    description = "we used this CIDR in subnet"
 }
 
 variable "bucket_name"{
       type = string 
-      descripton = "we used this bucket name for s3"
+      description = "we used this bucket name for s3"
 }
 
 variable "availability_zones" {
     type = list(string)
-    description = ""List of target availability zones for subnets"" 
+    description = "List of target availability zones for subnets"" 
 }
