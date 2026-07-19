@@ -21,5 +21,5 @@ variable "bucket_name"{
 
 variable "availability_zones" {
     type = list(string)
-    description = "List of target availability zones for subnets"" 
+    description = "List of target availability zones for subnets"
 }
