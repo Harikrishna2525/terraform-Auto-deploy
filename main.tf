@@ -18,7 +18,7 @@ resource "aws_internet_gateway" "igw" {
 
 resource "aws_subnet" "public_1" {
   vpc_id                  = aws_vpc.mainvpc.id
-  cidr_block              = var.subnet_cidrs[0]
+  cidr_block              = var.subnet_cidr[0]
   availability_zone       = var.availability_zones[0]
   map_public_ip_on_launch = true
 
@@ -27,7 +27,7 @@ resource "aws_subnet" "public_1" {
 
 resource "aws_subnet" "public_2" {
   vpc_id                  = aws_vpc.mainvpc.id
-  cidr_block              = var.subnet_cidrs[1]
+  cidr_block              = var.subnet_cidr[1]
   availability_zone       = var.availability_zones[1]
   map_public_ip_on_launch = true
 
