@@ -2,8 +2,7 @@ name : terraform infrastructure deployment using Github Actions
 
 on:
   push:
-    branches:
-      - main
+    branch:
       - development
 
 jobs:
