@@ -10,8 +10,8 @@ variable "vpc_cidr"{
 }
 
 variable "subnet_cidr"{
-      type = string 
-    description = "we used this CIDR in subnet"
+      type = list(string) 
+      description = "we used this CIDR in subnet"
 }
 
 variable "bucket_name"{
