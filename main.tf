@@ -88,6 +88,14 @@ resource "aws_security_group" "ec2_sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
+    ingress {
+    description = "CUSTOM"
+    from_port   = 5000
+    to_port     = 5000
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
   egress {
     from_port   = 0
     to_port     = 0
@@ -127,7 +135,17 @@ resource "aws_instance" "web" {
     delete_on_termination = true
   }
 
+  user_data = file("userdata.sh")
+
+
   tags = { Name = "Web-Server" }
+}
+
+resource "aws_instance" "web" {
+  ami = data.aws_ami.ubuntu.id
+  instance_type = "t2.micro"
+  subnet_id = aws_subnet.public_1.id
+  vpc_security_group_ids = [aws_security_group.ec2_sg.id]
 }
 
 
