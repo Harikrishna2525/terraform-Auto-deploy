@@ -106,40 +106,7 @@ resource "aws_security_group" "ec2_sg" {
   tags = { Name = "web-sg" }
 }
 
-# ==========================================
-# 3. DATA SOURCE & EC2 INSTANCE
-# ==========================================
 
-data "aws_ami" "ubuntu" {
-  most_recent = true
-  owners      = ["099720109477"] # Canonical
-
-  filter {
-    name   = "name"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-*"]
-  }
-}
-
-resource "aws_instance" "web" {
-  ami                    = data.aws_ami.ubuntu.id
-  instance_type          = "t2.micro"
-  subnet_id              = aws_subnet.public_1.id
-  vpc_security_group_ids = [aws_security_group.ec2_sg.id]
-
-    # Exact syntax to call the instance profile:
-  iam_instance_profile = "Ec2_SSM_ACCESS"   # Added IAM role that alreay exsiting in Actual Infra 
-
-  root_block_device {
-    volume_size           = 10
-    volume_type           = "gp3"
-    delete_on_termination = true
-  }
-
-  user_data = file("userdata.sh")
-
-
-  tags = { Name = "Web-Server" }
-}
 
 
 
