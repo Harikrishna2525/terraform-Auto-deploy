@@ -109,5 +109,3 @@ resource "aws_security_group" "ec2_sg" {
 
 
 
-
-
