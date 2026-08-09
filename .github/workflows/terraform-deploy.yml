@@ -23,7 +23,7 @@ jobs:
         with:
           terraform_version: 1.14.9
 
-      # use Github OIDC to access Aws 
+      # use Github OIDC to access Aws  # 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
