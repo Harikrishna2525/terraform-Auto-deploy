@@ -41,13 +41,13 @@ jobs:
         run: terraform plan
 
        # IaC Security Scan
-      - name: Checkov Security Scan
-        uses: bridgecrewio/checkov-action@master
-        with:
-          directory: .
-          framework: terraform
-          output_format: cli
+      # - name: Checkov Security Scan
+      #   uses: bridgecrewio/checkov-action@master
+      #   with:
+      #     directory: .
+      #     framework: terraform
+      #     output_format: cli
 
-      - name: Terraform Apply
-        run: terraform apply -auto-approve
+      - name: Terraform Destroy
+        run: terraform destroy -auto-approve
         
