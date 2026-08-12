@@ -33,12 +33,21 @@ jobs:
       - name: Terraform Init
         run: terraform init
 
-      - name: Terraform Plan
-        run: terraform plan
-
+      
       - name : Terraform Validate
         run: terraform validate
 
-      - name: Terraform Destroy
-        run: terraform destroy -auto-approve
+      - name: Terraform Plan
+        run: terraform plan
+
+       # IaC Security Scan
+      - name: Checkov Security Scan
+        uses: bridgecrewio/checkov-action@master
+        with:
+          directory: .
+          framework: terraform
+          output_format: cli
+
+      - name: Terraform Apply
+        run: terraform apply -auto-approve
         
