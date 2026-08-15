@@ -32,14 +32,14 @@ jobs:
         
 
       - name: Initialize Terraform
-        working-directory: "../dev"
+        working-directory: "./dev"
         run: terraform init 
 
       - name: Validate Terraform configuration
-        working-directory: "../dev"
+        working-directory: "./dev"
         run: terraform validate
       
       - name: Terraform Plan
-        working-directory: "../dev"
+        working-directory: "./dev"
         run: terraform plan 
   
