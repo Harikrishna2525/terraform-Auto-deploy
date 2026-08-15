@@ -1,0 +1,44 @@
+name : Infrastructure Deployment to Aws using Terraform with Multi Environment in Github Actions
+
+"on":
+  push:
+    branches:
+      - main
+ 
+
+jobs:
+  terraform:
+    name: Terraform Deployment
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        environment: [dev, stage]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 1.0.0
+      
+      # use ARN role to assume role in the target account
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: arn:aws:iam::920411896934:role/Github-terraform-access
+          aws-region: us-east-1
+        
+
+      - name: Initialize Terraform
+        working-directory: ./${matrix.environment}
+        run: terraform init 
+
+      - name: Validate Terraform configuration
+        working-directory: ./${matrix.environment}
+        run: terraform validate
+      - name: Apply Terraform configuration
+
+        working-directory: ./${matrix.environment}
+        run: terraform plan 
+  
