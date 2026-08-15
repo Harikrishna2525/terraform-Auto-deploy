@@ -35,14 +35,14 @@ jobs:
         
 
       - name: Initialize Terraform
-        working-directory: ./${matrix.environment}
+        working-directory: ${matrix.environment}
         run: terraform init 
 
       - name: Validate Terraform configuration
-        working-directory: ./${matrix.environment}
+        working-directory: ${matrix.environment}
         run: terraform validate
       
       - name: Terraform Plan
-        working-directory: ./${matrix.environment}
+        working-directory: ${matrix.environment}
         run: terraform plan 
   
