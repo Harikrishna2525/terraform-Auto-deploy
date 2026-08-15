@@ -37,8 +37,8 @@ jobs:
       - name: Validate Terraform configuration
         working-directory: ./${matrix.environment}
         run: terraform validate
-      - name: Apply Terraform configuration
-
+      
+      - name: Terraform Plan
         working-directory: ./${matrix.environment}
         run: terraform plan 
   
