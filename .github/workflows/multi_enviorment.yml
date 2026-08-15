@@ -3,7 +3,7 @@ name : Infrastructure Deployment to Aws using Terraform with Multi Environment i
 "on":
   push:
     branches:
-      - main
+      - multi-stage
  
 
 jobs:
