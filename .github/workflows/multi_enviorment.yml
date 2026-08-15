@@ -4,6 +4,10 @@ name : Infrastructure Deployment to Aws using Terraform with Multi Environment i
   push:
     branches:
       - multi-stage
+
+permissions:
+  id-token: write
+  contents: read
  
 
 jobs:
