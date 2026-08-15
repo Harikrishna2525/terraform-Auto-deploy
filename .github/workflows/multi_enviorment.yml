@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        environment: [dev, stage]
+        environment: [dev]
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
