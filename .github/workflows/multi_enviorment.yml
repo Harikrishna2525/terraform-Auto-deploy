@@ -43,7 +43,7 @@ jobs:
         working-directory: "./dev"
         run: terraform plan 
 
-      - name: Terraform Apply
+      - name: Terraform Destroy
         working-directory: "./dev"
-        run: terraform apply -auto-approve
+        run: terraform destroy -auto-approve
   
