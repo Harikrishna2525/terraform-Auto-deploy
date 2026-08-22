@@ -15,13 +15,3 @@ data "aws_ami" "ubuntu" {
   }
 }
 
-# Create EC2
-resource "aws_instance" "web" {
-  ami           = data.aws_ami.ubuntu.id
-  instance_type = var.instac-type
-  subnet_id     = var.subnet_id
-
-  tags = {
-    Name = var.ec2_name
-  }
-}
