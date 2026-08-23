@@ -47,3 +47,7 @@ jobs:
       - name: Terraform Plan
         working-directory: "./${{ matrix.environment }}"
         run: terraform plan
+
+      - name: Terraform Apply
+        working-directory: "./${{ matrix.environment }}"  
+        run: terraform apply -auto-approve
