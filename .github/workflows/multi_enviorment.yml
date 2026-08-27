@@ -11,15 +11,10 @@ permissions:
  
 
 jobs:
-  terraform:
-    name: Terraform - ${{ matrix.environment }}
-    runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        environment:
-          - dev
-          - stage
+  terraform-dev:
+    name: Terraform - Dev
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
@@ -37,17 +32,55 @@ jobs:
           aws-region: us-east-1
 
       - name: Terraform Init
-        working-directory: "./${{ matrix.environment }}"
+        working-directory: "./dev"
         run: terraform init
 
       - name: Terraform Validate
-        working-directory: "./${{ matrix.environment }}"
+        working-directory: "./dev"
         run: terraform validate
 
       - name: Terraform Plan
-        working-directory: "./${{ matrix.environment }}"
+        working-directory: "./dev"
         run: terraform plan
 
       - name: Terraform Destroy
-        working-directory: "./${{ matrix.environment }}"  
+        working-directory: "./dev"
+        run: terraform destroy -auto-approve
+
+
+  terraform-stage:
+    name: Terraform - Stage
+    runs-on: ubuntu-latest
+
+    needs: terraform-dev
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.14.0
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::920411896934:role/Github-terraform-access
+          aws-region: us-east-1
+
+      - name: Terraform Init
+        working-directory: "./stage"
+        run: terraform init
+
+      - name: Terraform Validate
+        working-directory: "./stage"
+        run: terraform validate
+
+      - name: Terraform Plan
+        working-directory: "./stage"
+        run: terraform plan
+
+      - name: Terraform Destroy
+        working-directory: "./stage"
         run: terraform destroy -auto-approve
