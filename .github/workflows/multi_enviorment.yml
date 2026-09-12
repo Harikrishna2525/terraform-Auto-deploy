@@ -43,11 +43,11 @@ jobs:
         working-directory: "./dev"
         run: terraform plan
 
-      # - name : Added checkov for security scanning
-      #   uses: bridgecrewio/checkov-action@master
-      #   with:
-      #     directory: './dev'
-      #     framework: terraform
+      - name : Added checkov for security scanning
+        uses: bridgecrewio/checkov-action@master
+        with:
+          directory: './dev'
+          framework: terraform
 
       - name: Terraform Destroy
         working-directory: "./dev"
@@ -88,11 +88,11 @@ jobs:
         working-directory: "./stage"
         run: terraform plan
 
-      # - name : Added checkov for security scanning
-      #   uses: bridgecrewio/checkov-action@master
-      #   with:
-      #     directory: './stage'
-      #     framework: terraform
+      - name : Added checkov for security scanning
+        uses: bridgecrewio/checkov-action@master
+        with:
+          directory: './stage'
+          framework: terraform
 
       - name: Terraform Destroy 
         working-directory: "./stage"

@@ -53,3 +53,19 @@ resource "aws_route_table_association" "public" {
   subnet_id      = aws_subnet.public[count.index].id
   route_table_id = aws_route_table.public.id
 }
+
+
+resource "aws_s3_bucket" "bucket" {
+  bukcet = var.bucket_name
+}
+
+resource "aws_instance" "ec2" {
+  instance_type = "t3.micro"
+  key_pair = "EC2_SSH"
+  secuity_group = var.secuity_group
+  iam = "Ec2_SSM_ACCESS"
+
+  root = {
+    
+  }
+}
