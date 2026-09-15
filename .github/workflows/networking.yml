@@ -1,0 +1,43 @@
+name : "Networking Deploy it to AWS through GitHub Actions"
+
+"on":
+  push:
+    branches:
+      - main
+
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      
+      # We used Github OIDC for authentication to AWS, so we don't need to configure AWS credentials here. The following step is commented out.
+
+      - name : Configure AWS credentials using OIDC
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          role-to-assume: arn:aws:iam::920411896934:role/Github-terraform-access 
+          aws-region: us-east-1
+        
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v1
+
+      - name: Terraform Init
+        run: terraform init
+
+      - name: Terraform Plan 
+        run: terraform plan
+
+      - name: Terraform Validate
+        run: terraform validate
+
+      - name: Terraform Format
+        run: terraform fmt -check
+
+      - name: Terraform Apply
+        run: terraform apply -auto-approve
+
+      
