@@ -3,7 +3,7 @@ name : "Networking Deploy it to AWS through GitHub Actions"
 "on":
   push:
     branches:
-      - main
+      - Networking
 
 
 jobs:
