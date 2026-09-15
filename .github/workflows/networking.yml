@@ -6,6 +6,11 @@ name : "Networking Deploy it to AWS through GitHub Actions"
       - Networking
 
 
+permissions:
+  id-token: write
+  contents: read
+
+
 jobs:
   terraform:
     runs-on: ubuntu-latest
@@ -17,7 +22,7 @@ jobs:
       # We used Github OIDC for authentication to AWS, so we don't need to configure AWS credentials here. The following step is commented out.
 
       - name : Configure AWS credentials using OIDC
-        uses: aws-actions/configure-aws-credentials@v5
+        uses: aws-actions/configure-aws-credentials@v2
         with:
           role-to-assume: arn:aws:iam::920411896934:role/Github-terraform-access 
           aws-region: us-east-1
