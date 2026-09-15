@@ -1,20 +1,20 @@
-variables "aws_region" {
+variable "aws_region" {
     type = string
     description = "we used this region"
 }
 
-variables "vpc_cidr" {
+variable "vpc_cidr" {
     type = string
     description = "we used this VPC CIDR IP Address "
 }
 
-variables "subnets_cidr" {
+variable "subnets_cidr" {
     type = list(string)
     description = "we used this Subents CIDR"
 }
 
 
-variables "availability_zones" {
+variable "availability_zones" {
     type = list(string)
     description = "we used this AZ"
 }
