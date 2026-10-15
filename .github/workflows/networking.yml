@@ -17,7 +17,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
       
       # We used Github OIDC for authentication to AWS, so we don't need to configure AWS credentials here. The following step is commented out.
 
@@ -29,6 +28,18 @@ jobs:
         
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@v1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install Checkov
+        run: pip install checkov
+
+      - name: Scan Terraform
+        run: |
+          checkov -d . --framework terraform
 
       - name: Terraform Init
         run: terraform init
