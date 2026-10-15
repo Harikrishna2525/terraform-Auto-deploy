@@ -86,15 +86,16 @@ resource "aws_route_table_association" "public_2_assoc" {
 
 # 9. CloudWatch Log Group for VPC Flow Logs
 
+
 resource "aws_cloudwatch_log_group" "vpc_flow_logs" {
   name              = "/aws/vpc/main/flow-logs"
   retention_in_days = 365
-  kms_key_id        = aws_kms_key.vpc_logs.arn
 
   tags = {
     Name = "main-vpc-flow-logs"
   }
 }
+
 
 
 # 10. IAM role assumed by the VPC Flow Logs service
