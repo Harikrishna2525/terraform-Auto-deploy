@@ -88,6 +88,8 @@ resource "aws_route_table_association" "public_2_assoc" {
 
 
 resource "aws_cloudwatch_log_group" "vpc_flow_logs" {
+  # checkov:skip=CKV_AWS_158:Learning project uses default CloudWatch Logs encryption; customer-managed KMS key intentionally omitted.
+
   name              = "/aws/vpc/main/flow-logs"
   retention_in_days = 365
 
@@ -95,6 +97,7 @@ resource "aws_cloudwatch_log_group" "vpc_flow_logs" {
     Name = "main-vpc-flow-logs"
   }
 }
+
 
 
 
