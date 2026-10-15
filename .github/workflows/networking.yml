@@ -37,10 +37,11 @@ jobs:
       - name: Install Checkov
         run: pip install checkov
 
+
       - name: Scan Terraform
-        run: |
-          checkov -d . --framework terraform
-          continue-on-error: true
+        run: checkov -d . --framework terraform
+        continue-on-error: true
+
 
       - name: Terraform Init
         run: terraform init
