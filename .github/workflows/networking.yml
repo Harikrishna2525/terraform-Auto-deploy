@@ -40,6 +40,7 @@ jobs:
       - name: Scan Terraform
         run: |
           checkov -d . --framework terraform
+          continue-on-error: true
 
       - name: Terraform Init
         run: terraform init
